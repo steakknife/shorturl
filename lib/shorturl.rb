@@ -144,6 +144,14 @@ class ShortURL
       s.action = "/shorten"
       s.field  = "url"
       s.block  = lambda { |body| body }
+    },
+
+    :gitio => Service.new("git.io") { |s|
+      s.code = 201
+      s.method = :post
+      s.action = "/"
+      s.field = "url" 
+      s.response_block  = lambda { |res| res["location"] }
     }
 
     # :skinnylink => Service.new("skinnylink.com") { |s|
