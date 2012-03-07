@@ -20,6 +20,7 @@ Here is the list of the services supported by ShortURL:
 * http://metamark.net
 * http://makeashorterlink.com
 * http://skinnylink.com
+* http://git.io
 * http://linktrim.com
 * http://shorterlink.com
 * http://minilink.org
@@ -49,6 +50,7 @@ The second parameter represents the service you want to use.  These are:
 * <tt>:metamark</tt>
 * <tt>:makeashorterlink</tt>
 * <tt>:skinnylink</tt>
+* <tt>:gitio</tt>
 * <tt>:linktrim</tt>
 * <tt>:shorterlink</tt>
 * <tt>:minlink</tt>
