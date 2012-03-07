@@ -36,6 +36,7 @@ Here is the list of the services supported by ShortURL:
 * http://urltea.com
 * http://vurl.me
 * http://bit.ly
+* http://is.gd
 
 == Usage: 
 call-seq:
@@ -67,6 +68,7 @@ The second parameter represents the service you want to use.  These are:
 * <tt>:urltea</tt>
 * <tt>:vurl</tt>
 * <tt>:bitly</tt>**
+* <tt>:isgd</tt>
 
 
 You can use <tt>ShortURL.valid_services</tt> to obtain a
