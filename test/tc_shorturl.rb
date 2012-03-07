@@ -28,6 +28,8 @@ class TestShortURL < Test::Unit::TestCase
     # ShortURL.valid_services.each do |service|
     #   assert ShortURL.shorten(@url, service).url?
     # end
+
+    assert ShortURL.shorten("https://github.com/robbyrussell/shorturl", :gitio) == "http://git.io/_KBNhA"
     
     # An invalid service
     assert_raise(InvalidService) { ShortURL.shorten(@url, :foobar) }
