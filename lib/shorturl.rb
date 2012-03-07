@@ -23,7 +23,6 @@ class Service
   # with the HTML code you get.
   def initialize(hostname) # :yield: service
     @hostname = hostname
-    @port = 80
     @code = 200
     @method = :post
     @action = "/"
@@ -130,7 +129,6 @@ class ShortURL
 
     :bitly => Service.new("api-ssl.bitly.com") { |s|
       s.method = :get
-      s.port   = 443
       s.ssl    = true
       s.action = "/v3/shorten/"
       require 'yaml'
