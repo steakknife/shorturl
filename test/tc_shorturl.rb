@@ -29,6 +29,7 @@ class TestShortURL < Test::Unit::TestCase
     #   assert ShortURL.shorten(@url, service).url?
     # end
 
+    # git.io
     assert ShortURL.shorten("https://github.com/robbyrussell/shorturl", :gitio) == "http://git.io/_KBNhA"
     
     # An invalid service
