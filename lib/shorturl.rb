@@ -155,6 +155,13 @@ class ShortURL
       s.block  = lambda { |body| body }
     },
 
+    :isgd => Service.new("is.gd") { |s|
+      s.method = :get
+      s.action = "/api.php"
+      s.field  = "longurl"
+      s.block  = lambda { |body| body }
+    },
+
     :gitio => Service.new("git.io") { |s|
       s.code = 201
       s.method = :post
@@ -244,6 +251,7 @@ class ShortURL
   # * <tt>:clipurl</tt>
   # * <tt>:shortify</tt>
   # * <tt>:orz</tt>
+  # * <tt>:isgd</tt>
   #
   # call-seq:
   #   ShortURL.shorten("http://mypage.com") => Uses RubyURL

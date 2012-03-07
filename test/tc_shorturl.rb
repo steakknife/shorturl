@@ -31,6 +31,9 @@ class TestShortURL < Test::Unit::TestCase
 
     # git.io
     assert ShortURL.shorten("https://github.com/robbyrussell/shorturl", :gitio) == "http://git.io/_KBNhA"
+
+    # is.gd doesn't change the shortened urls: http://is.gd/faq.php#duration
+    assert ShortURL.shorten(@url, :isgd) == "http://is.gd/O2ghm5"
     
     # An invalid service
     assert_raise(InvalidService) { ShortURL.shorten(@url, :foobar) }
