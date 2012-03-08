@@ -8,20 +8,13 @@ require 'shorturl/service'
 module ShortUrl
   module DSL
 
+
     # Outer shorturls block
     def shorturl
       @@current_service = nil
       @@valid_services = nil
       @@services = {}
       yield
-      if @@current_service.missing_token_help and ! @@current_service.exception_thrown.empty?
-        @@current_service.exception_thrown.empty.each do |e|
-          puts "#{e.class} #{e.message}"
-        end
-        puts
-        @@current_service.missing_token_help.call 
-      end
-      @@current_service = nil
     end
 
       # Inner service block(s)
@@ -29,6 +22,9 @@ module ShortUrl
         hostname = service_description.values[0]
         @@current_service = @@services[service_description.keys[0]] = ::ShortUrl::Service.new(hostname) 
         yield
+        show_missing_token_help
+        # End the previously current service block
+        @@current_service = nil
       end
 
         # Service fields
@@ -92,7 +88,18 @@ module ShortUrl
           @@current_service._help = _help
         end
 
+        def show_missing_token_help
+          if @@current_service.missing_token_help and ! @@current_service.exception_thrown.empty?
+            @@current_service.exception_thrown.empty.each do |e|
+              puts "#{e.class} #{e.message}"
+            end
+            puts
+            puts @@current_service.missing_token_help
+            raise @@current_service.exception_thrown.last
+          end
+        end
   private
+    
 
     @@current_service = nil
   end 

@@ -31,7 +31,6 @@ def main
   end
 
   ## Shorten url
-
   puts shorturl = ShortURL.shorten(url, service)
 
   ## Return

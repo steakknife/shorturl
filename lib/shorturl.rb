@@ -36,6 +36,7 @@ module ShortURL
         URI.extract(body).grep(/tinyurl/)[0] 
       end
     end
+
     service :shorl => 'shorl.com' do
       action '/create.php'
 
@@ -122,6 +123,31 @@ module ShortURL
       response_body  do |body|
         body
       end
+
+      missing_token_text <<-EOS
+      Bit.ly requires a token.  
+     
+      Two painfree steps to get this.
+
+          1) Get yours easily right now from: 
+
+
+                 http://bitly.com/a/your_api_key
+
+
+          2) Save both parts in a file ~/.shorturl similar to this YAML template:
+
+           
+                 bitly:
+                   username: O_adsfasdfasfasfd
+                   key: R_afasdfasdfasdf
+
+
+      You're done!  Have a martini.
+
+      Cheers.
+      EOS
+
     end
       
 
@@ -239,7 +265,7 @@ module ShortURL
   def self.help_texts
     return {}.tap do |result|
       @@valid_services.each do |k, v|
-        result[k] = v.help.nil? ? '' : v.help.call
+        result[k] = v.help.to_s
       end 
     end
   end
@@ -247,7 +273,9 @@ module ShortURL
   # Main method of ShortURL, its usage is quite simple, just give an
   # url to shorten and an optional service.  If no service is
   # selected, RubyURL.com will be used.  An invalid service symbol
-  # will raise an ArgumentError exception
+  # will raise an ShortUrl::InvalidService exception.  Missing
+  # API tokens/credentials will  raise an  ShortUrl::TokenLoadError
+  # exception.
   #
   # Valid +service+ values:
   #
@@ -270,6 +298,8 @@ module ShortURL
   # * <tt>:shortify</tt>
   # * <tt>:orz</tt>
   # * <tt>:isgd</tt>
+  # * <tt>:googl</tt>
+  # * <tt>:gitio</tt>
   #
   # call-seq:
   #   ShortURL.shorten("http://mypage.com") => Uses RubyURL
