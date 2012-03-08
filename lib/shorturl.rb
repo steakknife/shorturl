@@ -11,10 +11,6 @@ module ShortURL
   include ::ShortUrl::DSL
   extend ::ShortUrl::Tokens
 
-  ##
-
-  @@exception_thrown = []
-
   ## 
 
   shorturl do
