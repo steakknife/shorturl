@@ -16,6 +16,10 @@ module ShortURL
 
   ## 
 
+  DEFAULT_SERVICE = :isgd
+
+  ##
+
   shorturl do
 
     service :tinyurl => 'tinyurl.com' do
@@ -221,7 +225,8 @@ module ShortURL
   # call-seq:
   #   ShortURL.shorten("http://mypage.com") => Uses RubyURL
   #   ShortURL.shorten("http://mypage.com", :tinyurl)
-  def self.shorten(url, service = :isgd)
+  def self.shorten(url, service = nil)
+    service ||= DEFAULT_SERVICE
     raise ::ShortUrl::InvalidService unless valid_services.include? service
 
     result = @@services[service].call(url)
