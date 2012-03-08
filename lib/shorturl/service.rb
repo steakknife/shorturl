@@ -12,7 +12,7 @@ module ShortUrl
 
   class Service
     attr_accessor :port, :code, :method, :action, :field, :request_body_block, :response_body_block, :response_block,
-                  :ssl, :params, :headers, :help, :missing_token_help
+                  :ssl, :params, :headers, :help, :missing_token_help, :needs_to_show_token_help
 
     # Intialize the service with a hostname (required parameter) and you
     # can override the default values for the HTTP port, expected HTTP
@@ -28,6 +28,7 @@ module ShortUrl
       @ssl = false
       @params = {}
       @headers = {}
+      @needs_to_show_token_help = false
 
       if block_given?
         yield self

@@ -4,4 +4,5 @@ module ShortUrl
 
   class InvalidService < Exception ; end
 
+  class TokenLoadError < Exception ; end
 end

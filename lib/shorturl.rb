@@ -4,27 +4,16 @@
 #   Heavily refactored by Barry Allard
 
 require 'shorturl/dsl'
+require 'shorturl/tokens'
 
 module ShortURL
-  extend ::ShortUrl::DSL
+   extend ::ShortUrl::DSL
   include ::ShortUrl::DSL
+  extend ::ShortUrl::Tokens
 
-  TOKENS_FILENAME = File.join(ENV['HOME'],'.shorturl')
-  @@tokens = nil
+  ##
 
-  def self.tokens
-    require 'yaml'
-    @@tokens = YAML.load(File.read(TOKENS_FILENAME)) if @@tokens.nil?
-    @@tokens
-  end
-
-  def self.bitly_username
-    tokens()['bitly']['username']
-  end
-
-  def self.bitly_key
-    tokens()['bitly']['key']
-  end
+  @@exception_thrown = []
 
   ## 
 
@@ -127,8 +116,8 @@ module ShortURL
       action '/v3/shorten/'
       field 'longUrl'
       param 'format' => 'txt'
-      param 'login'  => bitly_username
-      param 'apiKey' => bitly_key
+      param 'login'  => tokens()['bitly']['username']
+      param 'apiKey' => tokens()['bitly']['key']
 
       response_body  do |body|
         body
@@ -190,7 +179,8 @@ module ShortURL
         body.split('"').grep(/goo\.gl/)[0]
       end
     end
-  end
+  end # shorturl
+
     # :skinnylink => 'skinnylink.com") { |s|
     #   block do |body| URI.extract(body).grep(/skinnylink/)[0] }
     # },
@@ -246,6 +236,14 @@ module ShortURL
     @@valid_services 
   end
 
+  def self.help_texts
+    return {}.tap do |result|
+      @@valid_services.each do |k, v|
+        result[k] = v.help.nil? ? '' : v.help.call
+      end 
+    end
+  end
+
   # Main method of ShortURL, its usage is quite simple, just give an
   # url to shorten and an optional service.  If no service is
   # selected, RubyURL.com will be used.  An invalid service symbol
@@ -277,12 +275,10 @@ module ShortURL
   #   ShortURL.shorten("http://mypage.com") => Uses RubyURL
   #   ShortURL.shorten("http://mypage.com", :tinyurl)
   def self.shorten(url, service = :rubyurl)
-    if valid_services.include? service
-      @@services[service].call(url)
-    else
-      raise ::ShortUrl::InvalidService
-    end
+    raise ::ShortUrl::InvalidService unless valid_services.include? service
+
+    @@services[service].call(url).strip
   end
 
-end
+end # module ShortUrl
 

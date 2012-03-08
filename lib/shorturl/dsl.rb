@@ -7,12 +7,20 @@ require 'shorturl/service'
 
 module ShortUrl
   module DSL
+
     # Outer shorturls block
     def shorturl
       @@current_service = nil
       @@valid_services = nil
       @@services = {}
       yield
+      if @@current_service.missing_token_help and ! @@current_service.exception_thrown.empty?
+        @@current_service.exception_thrown.empty.each do |e|
+          puts "#{e.class} #{e.message}"
+        end
+        puts
+        @@current_service.missing_token_help.call 
+      end
       @@current_service = nil
     end
 
@@ -85,6 +93,7 @@ module ShortUrl
         end
 
   private
+
     @@current_service = nil
   end 
 end
