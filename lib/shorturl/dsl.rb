@@ -62,6 +62,14 @@ module ShortUrl
           @@current_service.code = _code
         end
 
+        def missing_token_help(_missing_token_help)
+          @@current_service.missing_token_help = _missing_token_help
+        end
+
+        def help(_help)
+          @@current_service._help = _help
+        end
+
   private
     @@current_service = nil
   end 
