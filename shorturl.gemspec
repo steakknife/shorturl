@@ -3,11 +3,11 @@ lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require 'rubygems'
-require 'shorturl'
+require 'shorturl/version'
 
 SPEC = Gem::Specification.new do |s|
   s.name              = "shorturl"
-  s.version           = "0.8.8"
+  s.version           = ShortUrl::VERSION
   s.author            = "Robby Russell"
   s.summary           = "Shorten URLs using any of various shortening services."
   s.email             = "robby@planetargon.com"
@@ -18,7 +18,6 @@ SPEC = Gem::Specification.new do |s|
   ShortURL is a very simple library and command to use URL
   shortening services such as is.gd, git.io, and TinyURL.
   desc
- 
 
   s.required_rubygems_version = '>= 1.3.6'
 
