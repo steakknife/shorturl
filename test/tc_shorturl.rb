@@ -5,8 +5,8 @@
 $test_lib_dir = File.join(File.dirname(__FILE__), "..", "lib")
 $:.unshift($test_lib_dir)
 
-require "test/unit"
-require "shorturl"
+require 'test/unit'
+require 'shorturl'
 
 class String
   def url?
@@ -36,6 +36,6 @@ class TestShortURL < Test::Unit::TestCase
     assert ShortURL.shorten(@url, :isgd) == "http://is.gd/O2ghm5"
     
     # An invalid service
-    assert_raise(InvalidService) { ShortURL.shorten(@url, :foobar) }
+    assert_raise(::ShortUrl::InvalidService) { ShortURL.shorten(@url, :foobar) }
   end
 end

@@ -5,17 +5,17 @@
 $test_lib_dir = File.join(File.dirname(__FILE__), "..", "lib")
 $:.unshift($test_lib_dir)
 
-require "test/unit"
-require "shorturl"
+require 'test/unit'
+require 'shorturl'
 
 
 class TestService < Test::Unit::TestCase
 
   def test_call
-    service = Service.new("oasdasobf")
+    service = ::ShortUrl::Service.new("oasdasobf")
     assert_raise(SocketError) { service.call(nil) }
 
-    service = Service.new("tinyurl.com") { |s|
+    service = ::ShortUrl::Service.new("tinyurl.com") { |s|
       s.code = 404
       s.action = "/create.php"
       s.block = lambda { |body|
@@ -26,14 +26,14 @@ class TestService < Test::Unit::TestCase
   end
   
   def test_initialize
-    service = Service.new("rubyurl.com")
-    assert_equal(service.port, 80)
+    service = ::ShortUrl::Service.new("rubyurl.com")
+    assert_equal(service.port, nil)
     assert_equal(service.code, 200)
     assert_equal(service.method, :post)
     assert_equal(service.action, "/")
     assert_equal(service.field, "url")
 
-    service = Service.new("rubyurl.com") { |s|
+    service = ::ShortUrl::Service.new("rubyurl.com") { |s|
       s.port = 8080
       s.code = 302
       s.method = :get
