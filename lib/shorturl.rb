@@ -98,6 +98,18 @@ module ShortURL
       end
     end 
 
+
+    service :vurl => 'vurl.me' do
+      method :get
+      action '/shorten'
+      field  'url'
+
+      response_body  do |body|
+        body
+      end
+    end 
+
+
     service :bitly => 'api-ssl.bitly.com' do
       method :get
       ssl    
@@ -136,17 +148,6 @@ module ShortURL
       EOS
 
     end
-      
-
-    service :vurl => 'vurl.me' do
-      method :get
-      action '/shorten'
-      field  'url'
-
-      response_body  do |body|
-        body
-      end
-    end 
 
     service :isgd => 'is.gd' do
       method :get
