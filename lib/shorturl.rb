@@ -24,6 +24,7 @@ module ShortURL
       end
     end
 
+
     service :shorl => 'shorl.com' do
       action '/create.php'
 
@@ -32,8 +33,9 @@ module ShortURL
       end
     end
 
-      # SnipURL offers a restful HTTP API but it cannot be used without
-      # registration.
+
+    # SnipURL offers a restful HTTP API but it cannot be used without
+    # registration.
     service :snipurl => 'snipurl.com' do
       action '/site/index'
       field  'url'
@@ -42,6 +44,7 @@ module ShortURL
         URI.extract(body).grep(/http:\/\/snipurl.com/)[0] 
       end
     end 
+
 
     service :metamark => 'metamark.net' do
       action '/add'
@@ -52,6 +55,19 @@ module ShortURL
       end 
     end
 
+
+    service :gitio => 'git.io' do
+      method :post
+      action '/'
+      field  'url' 
+
+      code   201
+      response do |res|
+        res['location']
+      end
+    end
+
+
     service :minilink => 'minilink.org' do
       method :get
 
@@ -59,6 +75,7 @@ module ShortURL
         URI.extract(body)[-1] 
       end
     end
+
 
     service :lns => 'ln-s.net' do
       method :get
@@ -151,16 +168,6 @@ module ShortURL
       end
     end
 
-    service :gitio => 'git.io' do
-      method :post
-      action '/'
-      field  'url' 
-
-      code   201
-      response do |res|
-        res['location']
-      end
-    end
 
     service :googl => 'www.googleapis.com' do
       ssl
