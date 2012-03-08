@@ -19,15 +19,6 @@ module ShortURL
 
   shorturl do
 
-    service :rubyurl => 'rubyurl.com' do
-      action '/rubyurl/remote'
-      field  'website_url'
-
-      response_body  do |body|
-        URI.extract(body).grep(/rubyurl/)[0]
-      end
-    end
-    
     service :tinyurl => 'tinyurl.com' do
       action '/api-create.php'
       field  'website_url' 
@@ -271,7 +262,6 @@ module ShortURL
   #
   # Valid +service+ values:
   #
-  # * <tt>:rubyurl</tt>
   # * <tt>:tinyurl</tt>
   # * <tt>:shorl</tt>
   # * <tt>:snipurl</tt>
@@ -295,7 +285,7 @@ module ShortURL
   # call-seq:
   #   ShortURL.shorten("http://mypage.com") => Uses RubyURL
   #   ShortURL.shorten("http://mypage.com", :tinyurl)
-  def self.shorten(url, service = :rubyurl)
+  def self.shorten(url, service = :isgd)
     raise ::ShortUrl::InvalidService unless valid_services.include? service
 
     @@services[service].call(url).strip

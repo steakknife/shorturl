@@ -26,14 +26,14 @@ class TestService < Test::Unit::TestCase
   end
   
   def test_initialize
-    service = ::ShortUrl::Service.new("rubyurl.com")
-    assert_equal(service.port, nil)
+    service = ::ShortUrl::Service.new("is.gd")
+    assert_equal(service.port, 80)
     assert_equal(service.code, 200)
     assert_equal(service.method, :post)
     assert_equal(service.action, "/")
     assert_equal(service.field, "url")
 
-    service = ::ShortUrl::Service.new("rubyurl.com") { |s|
+    service = ::ShortUrl::Service.new("is.gd") { |s|
       s.port = 8080
       s.code = 302
       s.method = :get
