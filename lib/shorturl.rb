@@ -8,9 +8,10 @@ require 'shorturl/dsl'
 require 'shorturl/tokens'
 
 module ShortURL
+   extend ::ShortUrl::Tokens
+  include ::ShortUrl::Tokens
    extend ::ShortUrl::DSL
   include ::ShortUrl::DSL
-   extend ::ShortUrl::Tokens
 
   ## 
 

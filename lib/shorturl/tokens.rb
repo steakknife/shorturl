@@ -1,46 +1,39 @@
 module ShortUrl
   module Tokens
-    TOKENS_FILENAME = File.join(ENV['HOME'],'.shorturl')
-    @@tokens = nil
-    @@exception_dumpster = []
+    MAX_TRIES       = 3
+    TOKENS_FILENAME = File.join(ENV['HOME'], '.shorturl') # ~/.shorturl
+  private
+    @@tokens        = nil
+  public
 
     def tokens
       return @@tokens unless @@tokens.nil?
+
+      ## @@tokens is nil
+
+      tries = 0 
       begin
-        if @@exception_dumpster.empty?
-          require 'yaml'
-          @@tokens = YAML.load(File.read(TOKENS_FILENAME)) if @@tokens.nil?
-        else
-          @@tokens = {}
+        require 'yaml'
+        @@tokens = nil
+        @@tokens = YAML.load(File.read(TOKENS_FILENAME)) 
+      rescue Exception => e
+        { SyntaxError    => 'SyntaxError in %s: %s',
+          Errno::EACCES  => 'Permissions prevent reading token file %s.',
+          Errno::ENOENT  => 'YAML token file %s was not found.',
+          LoadError      => 'YAML gem did not load successsfully.  Try "gem install psych".',
+          Exception      => 'Other exception loading file %s: %s'
+        }.each do |e_class, msg|
+          if e.is_a? e_class
+            puts "retrying" 
+            sleep 1
+            retry if (tries += 1) < MAX_TRIES
+            puts "giving up"
+            new_exception = Exceptions::TokenLoadError.new(msg % [TOKENS_FILENAME, e.message]) 
+            Exceptions::Dumpster.throw( new_exception )
+            break
+          end
         end
-      rescue SyntaxError => e
-        @@exception_dumpster << TokenLoadError.new("Syntax error in #{TOKENS_FILENAME}: #{e.message}.")
-        puts "retrying" 
-        retry
-
-      rescue Errno::EACCES
-        @@exception_dumpster << TokenLoadError.new("Permissions prevent reading token file #{TOKENS_FILENAME}.")
-        puts "retrying" 
-        retry
-
-      rescue Errno::ENOENT
-        @@exception_dumpster << TokenLoadError.new("YAML token file #{TOKENS_FILENAME} was not found.")
-        puts "retrying" 
-        retry
-
-      rescue LoadError
-        @@exception_dumpster = TokenLoadError.new('YAML gem did not load successsfully.  Try "gem install psych".')
-        puts "retrying" 
-        retry
-
-      rescue Exception => f
-        @@exception_dumpster = TokenLoadError.new("Other exception: #{f.message}.")
-        puts "retrying" 
-        retry
-
       end
-
-      @@tokens
     end
-  end
-end
+  end # Tokens
+end # ShortUrl

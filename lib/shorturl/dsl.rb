@@ -65,11 +65,11 @@ module ShortUrl
         end
 
         def request_body(&block)
-           @@current_service.request_body_block = lambda(&block)
+          @@current_service.request_body_block = lambda(&block)
         end
 
         def response(&block)
-           @@current_service.response_block = lambda(&block)
+          @@current_service.response_block = lambda(&block)
         end
 
         def response_body(&block)
@@ -89,13 +89,13 @@ module ShortUrl
         end
 
         def show_missing_token_help
-          if @@current_service.missing_token_help and ! @@current_service.exception_dumpster.empty?
-            @@current_service.exception_dumpster.each do |e|
+          if @@current_service.missing_token_help and Exceptions::Dumpsters.junk?
+            Exceptions::Dumpster.each do |e|
               puts "#{e.class} #{e.message}"
             end
             puts
             puts @@current_service.missing_token_help
-            raise @@current_service.exception_dumpster.last
+            raise Exceptions::Dumpster.top
           end
         end
   private
