@@ -126,10 +126,10 @@ module ShortURL
       method :get
       ssl    
       action '/v3/shorten/'
-      field  'longUrl'
-      extra_field 'format' => 'txt'
-      extra_field 'login'  => bitly_username
-      extra_field 'apiKey' => bitly_key
+      field 'longUrl'
+      param 'format' => 'txt'
+      param 'login'  => bitly_username
+      param 'apiKey' => bitly_key
 
       block  do |body|
         body

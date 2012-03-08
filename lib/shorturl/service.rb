@@ -12,7 +12,7 @@ module ShortUrl
 
   class Service
     attr_accessor :port, :code, :method, :action, :field, :block, :response_block,
-                  :ssl, :extra_fields, :extra_headers, :help, :missing_token_help
+                  :ssl, :params, :headers, :help, :missing_token_help
 
     # Intialize the service with a hostname (required parameter) and you
     # can override the default values for the HTTP port, expected HTTP
@@ -26,29 +26,23 @@ module ShortUrl
       @action = '/'
       @field = 'url'
       @ssl = false
-      @extra_fields = {}
-      @extra_headers = {}
+      @params = {}
+      @headers = {}
 
       if block_given?
         yield self
       end
     end
 
-    def query_fields(long_url)
-      { @field => long_url }.merge @extra_fields
+    def query_params(long_url)
+      { @field => long_url }.merge @params
     end
 
     def query(long_url)
-      query_fields(long_url).collect do |k,v|
+      query_params(long_url).collect do |k,v|
         URI.encode(k.to_s) + '=' + URI.encode(v.to_s) 
       end.join '&'
     end
-
-#    def merge_extra_request_headers(request)
-#      extra_headers.each do |k,v|
-#        request[k] = v
-#      end 
-#    end
 
     # Now that our service is set up, call it with all the parameters to
     # (hopefully) return only the shortened URL.
@@ -65,11 +59,15 @@ module ShortUrl
                 when :get
                   Net::HTTP::Get
                 end.new(uri.request_uri)
-      request.set_form_data query_fields(long_url) if @method == :post
+      request.set_form_data query_params(long_url) if @method == :post
       
-      unless extra_headers.empty? #      merge_extra_request_headers(request) unless extra_headers.empty?
-        extra_headers.merge(request.to_hash)
-        request.initialize_http_header(extra_headers) 
+      unless headers.empty? #      merge_extra_request_headers(request) unless extra_headers.empty?
+        _headers = headers.clone.merge({}.tap do |result|
+          request.to_hash.each do |k,v|
+            result[k] = v.join '; '
+          end 
+        end)
+        request.initialize_http_header(_headers)
       end
            
       Net::HTTP.start(uri.hostname, uri.port,

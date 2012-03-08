@@ -44,10 +44,20 @@ module ShortUrl
           @@current_service.field = _field
         end
 
-        def extra_field(_extra_fields)
-          _extra_fields.each do |k, v|
-          end
-          @@current_service.extra_fields.merge!(_extra_fields)
+        def param(_params)
+          @@current_service.params.merge!(_params)
+        end
+
+        def params(_params)
+          @@current_service.params.merge!(_params)
+        end
+
+        def header(_headers)
+          @@current_service.headers.merge!(_headers)
+        end
+
+        def headers(_headers)
+          @@current_service.headers.merge!(_headers)
         end
 
         def block(&block)
