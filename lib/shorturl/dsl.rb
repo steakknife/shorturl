@@ -89,13 +89,13 @@ module ShortUrl
         end
 
         def show_missing_token_help
-          if @@current_service.missing_token_help and ! @@current_service.exception_thrown.empty?
-            @@current_service.exception_thrown.empty.each do |e|
+          if @@current_service.missing_token_help and ! @@current_service.exception_dumpster.empty?
+            @@current_service.exception_dumpster.each do |e|
               puts "#{e.class} #{e.message}"
             end
             puts
             puts @@current_service.missing_token_help
-            raise @@current_service.exception_thrown.last
+            raise @@current_service.exception_dumpster.last
           end
         end
   private
