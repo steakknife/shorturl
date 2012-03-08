@@ -138,16 +138,6 @@ module ShortURL
     end
       
 
-    service :ur1 => 'ur1.ca' do
-      method :post
-      action '/'
-      field  'longurl'
-
-      response_body  do |body|
-        URI.extract(body).grep(/ur1/)[0] 
-      end
-    end
-
     service :vurl => 'vurl.me' do
       method :get
       action '/shorten'
