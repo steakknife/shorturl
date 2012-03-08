@@ -69,15 +69,6 @@ module ShortURL
       end
     end
 
-    service :shiturl => 'shiturl.com' do
-      method :get
-      action '/make.php'
-
-      response_body  do |body|
-        URI.extract(body).grep(/shiturl/)[0] 
-      end
-    end
-
       
     service :moourl => 'moourl.com' do
       action '/create/'
@@ -270,7 +261,6 @@ module ShortURL
   # * <tt>:lns</tt>
   # * <tt>:fyad</tt>
   # * <tt>:d62</tt>
-  # * <tt>:shiturl</tt>
   # * <tt>:littlink</tt>
   # * <tt>:clipurl</tt>
   # * <tt>:orz</tt>

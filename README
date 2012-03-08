@@ -26,7 +26,6 @@ Here is the list of the services supported by ShortURL:
 * http://ln-s.net
 * http://fyad.org
 * http://d62.net
-* http://shiturl.com
 * http://littlink.com
 * http://clipurl.com
 * http://0rz.net
@@ -56,7 +55,6 @@ The second parameter represents the service you want to use.  These are:
 * <tt>:lns</tt>
 * <tt>:fyad</tt>
 * <tt>:d62</tt>
-* <tt>:shiturl</tt>
 * <tt>:littlink</tt>
 * <tt>:clipurl</tt>
 * <tt>:orz</tt>
