@@ -224,7 +224,9 @@ module ShortURL
   def self.shorten(url, service = :isgd)
     raise ::ShortUrl::InvalidService unless valid_services.include? service
 
-    @@services[service].call(url).strip
+    result = @@services[service].call(url)
+
+    ( result.nil? ) ?  ''  :  result.strip
   end
 
 end # module ShortUrl
