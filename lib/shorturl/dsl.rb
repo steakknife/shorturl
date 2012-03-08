@@ -60,12 +60,16 @@ module ShortUrl
           @@current_service.headers.merge!(_headers)
         end
 
-        def block(&block)
-           @@current_service.block = lambda(&block) if block_given?
+        def request_body(&block)
+           @@current_service.request_body_block = lambda(&block)
         end
 
-        def response_block(&block)
-           @@current_service.response_block = lambda(&block) if block_given?
+        def response(&block)
+           @@current_service.response_block = lambda(&block)
+        end
+
+        def response_body(&block)
+           @@current_service.response_body_block = lambda(&block)
         end
 
         def code(_code)

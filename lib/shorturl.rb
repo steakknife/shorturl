@@ -34,7 +34,7 @@ module ShortURL
       action '/rubyurl/remote'
       field  'website_url'
 
-      block  do |body|
+      response_body  do |body|
         URI.extract(body).grep(/rubyurl/)[0]
       end
     end
@@ -43,15 +43,14 @@ module ShortURL
       action '/api-create.php'
       field  'website_url' 
 
-      block  do |body|
+      response_body do |body|
         URI.extract(body).grep(/tinyurl/)[0] 
       end
-
     end
     service :shorl => 'shorl.com' do
       action '/create.php'
 
-      block  do |body|
+      response_body  do |body|
         URI.extract(body)[2] 
       end
     end
@@ -62,7 +61,7 @@ module ShortURL
       action '/site/index'
       field  'url'
 
-      block  do |body|
+      response_body do |body|
         URI.extract(body).grep(/http:\/\/snipurl.com/)[0] 
       end
     end 
@@ -71,7 +70,7 @@ module ShortURL
       action '/add'
       field  'long_url'
 
-      block  do |body| 
+      response_body  do |body| 
         URI.extract(body).grep(/xrl.us/)[0] 
       end 
     end
@@ -79,7 +78,7 @@ module ShortURL
     service :minilink => 'minilink.org' do
       method :get
 
-      block  do |body|
+      response_body do |body|
         URI.extract(body)[-1] 
       end
     end
@@ -88,7 +87,7 @@ module ShortURL
       method :get
       action '/home/api.jsp'
 
-      block  do |body|
+      response_body  do |body|
         URI.extract(body)[0] 
       end
     end
@@ -97,7 +96,7 @@ module ShortURL
       method :get
       action '/make.php'
 
-      block  do |body|
+      response_body  do |body|
         URI.extract(body).grep(/shiturl/)[0] 
       end
     end
@@ -106,7 +105,7 @@ module ShortURL
       method :get
       action '/shorten.php'
 
-      block  do |body|
+      response_body  do |body|
         URI.extract(body).grep(/shortify/)[-1] 
       end
     end
@@ -117,7 +116,7 @@ module ShortURL
       field  'source'
 
       code   302
-      response_block do |res|
+      response do |res|
         'http://moourl.com/' + res['location'].match(/\?moo=/).post_match
       end
     end 
@@ -131,7 +130,7 @@ module ShortURL
       param 'login'  => bitly_username
       param 'apiKey' => bitly_key
 
-      block  do |body|
+      response_body  do |body|
         body
       end
     end
@@ -142,7 +141,7 @@ module ShortURL
       action '/'
       field  'longurl'
 
-      block  do |body|
+      response_body  do |body|
         URI.extract(body).grep(/ur1/)[0] 
       end
     end
@@ -152,7 +151,7 @@ module ShortURL
       action '/shorten'
       field  'url'
 
-      block  do |body|
+      response_body  do |body|
         body
       end
     end 
@@ -162,7 +161,7 @@ module ShortURL
       action '/api.php'
       field  'longurl'
 
-      block  do |body|
+      response_body  do |body|
         body
       end
     end
@@ -173,11 +172,24 @@ module ShortURL
       field  'url' 
 
       code   201
-      response_block do |res|
+      response do |res|
         res['location']
       end
     end
 
+    service :googl => 'www.googleapis.com' do
+      ssl
+      method :post
+      action '/urlshortener/v1/url'
+
+      request_body do |long_url|
+        [ 'application/json', "{\"longUrl\": \"#{long_url}\"}" ]
+      end 
+
+      response_body do |body|
+        body.split('"').grep(/goo\.gl/)[0]
+      end
+    end
   end
     # :skinnylink => 'skinnylink.com") { |s|
     #   block do |body| URI.extract(body).grep(/skinnylink/)[0] }

@@ -11,7 +11,7 @@ module ShortUrl
   require 'shorturl/exceptions'
 
   class Service
-    attr_accessor :port, :code, :method, :action, :field, :block, :response_block,
+    attr_accessor :port, :code, :method, :action, :field, :request_body_block, :response_body_block, :response_block,
                   :ssl, :params, :headers, :help, :missing_token_help
 
     # Intialize the service with a hostname (required parameter) and you
@@ -69,6 +69,10 @@ module ShortUrl
         end)
         request.initialize_http_header(_headers)
       end
+
+      if @method == :post and @request_body_block
+        request.content_type, request.body = @request_body_block.call(long_url)
+      end
            
       Net::HTTP.start(uri.hostname, uri.port,
                       :use_ssl     => ssl,
@@ -78,11 +82,11 @@ module ShortUrl
 
         response = http.request(request)
 
-        if response.code.to_i == @code
-          if @response_block
-            @response_block.call(response)
-          else
-            @block.call(response.read_body)
+        if response.code.to_i == @code 
+          if @response_body_block
+            @response_body_block.call(response.read_body) 
+          elsif @response_block
+            @response_block.call(response) 
           end
         end
       }
