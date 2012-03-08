@@ -124,7 +124,7 @@ module ShortURL
         body
       end
 
-      missing_token_text <<-EOS
+      missing_token_help <<-EOS
       Bit.ly requires a token.  
      
       Two painfree steps to get this.
