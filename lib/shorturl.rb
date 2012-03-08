@@ -149,6 +149,7 @@ module ShortURL
 
     end
 
+
     service :isgd => 'is.gd' do
       method :get
       action '/api.php'
@@ -173,53 +174,8 @@ module ShortURL
         body.split('"').grep(/goo\.gl/)[0]
       end
     end
+
   end # shorturl
-
-    # :skinnylink => 'skinnylink.com") { |s|
-    #   block do |body| URI.extract(body).grep(/skinnylink/)[0] }
-    # },
-
-    # :linktrim => 'linktrim.com") { |s|
-    #   method :get
-    #   action "/lt/generate"
-    #   block do |body| URI.extract(body).grep(/\/linktrim/)[1] }
-    # },
-
-    # :shorterlink => 'shorterlink.com") { |s|
-    #   method :get
-    #   action "/add_url.html"
-    #   block do |body| URI.extract(body).grep(/shorterlink/)[0] }
-    # },
-
-    # :fyad => 'fyad.org") { |s|
-    #   method :get
-    #   block do |body| URI.extract(body).grep(/fyad.org/)[2] }
-    # },
-
-    # :d62 => 'd62.net") { |s|
-    #   method :get
-    #   block do |body| URI.extract(body)[0] }
-    # },
-
-    # :littlink => 'littlink.com") { |s|
-    #   block do |body| URI.extract(body).grep(/littlink/)[0] }
-    # },
-
-    # :clipurl => 'clipurl.com") { |s|
-    #   action "/create.asp"
-    #   block do |body| URI.extract(body).grep(/clipurl/)[0] }
-    # },
-
-    # :orz => '0rz.net") { |s|
-    #   action "/create.php"
-    #   block do |body| URI.extract(body).grep(/0rz/)[0] }
-    # },
-
-    # :urltea => 'urltea.com") { |s|
-    #   method :get
-    #   action "/create/"
-    #   block do |body| URI.extract(body).grep(/urltea/)[6] }
-    # }
 
   # Array containing symbols representing all the implemented URL
   # shortening services
@@ -251,20 +207,13 @@ module ShortURL
   # * <tt>:shorl</tt>
   # * <tt>:snipurl</tt>
   # * <tt>:metamark</tt>
-  # * <tt>:makeashorterlink</tt>
-  # * <tt>:skinnylink</tt>
-  # * <tt>:linktrim</tt>
-  # * <tt>:shorterlink</tt>
+  # * <tt>:gitio</tt>
   # * <tt>:minlink</tt>
   # * <tt>:lns</tt>
-  # * <tt>:fyad</tt>
-  # * <tt>:d62</tt>
-  # * <tt>:littlink</tt>
   # * <tt>:clipurl</tt>
   # * <tt>:orz</tt>
   # * <tt>:isgd</tt>
   # * <tt>:googl</tt>
-  # * <tt>:gitio</tt>
   #
   # call-seq:
   #   ShortURL.shorten("http://mypage.com") => Uses RubyURL
