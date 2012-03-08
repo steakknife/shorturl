@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>File: ChangeLog [ShortURL Documentation]</title>
+
+  <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet" />
+
+  <script src="./js/jquery.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="./js/thickbox-compressed.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="./js/quicksearch.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="./js/darkfish.js" type="text/javascript"
+    charset="utf-8"></script>
+</head>
+
+<body class="file">
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="./ChangeLog.html">ChangeLog</a></li>
+        
+          <li class="file"><a href="./MIT-LICENSE.html">MIT-LICENSE</a></li>
+        
+          <li class="file"><a href="./README.html">README</a></li>
+        
+          <li class="file"><a href="./TODO.html">TODO</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class Index
+          <span class="search-toggle"><img src="./images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="./ShortURL.html">ShortURL</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="documentation">
+    
+<p>0.8.7:</p>
+
+<pre>- Added support for ur1.ca (thanks to raneksi)
+- Added support for bit.ly (thanks to raneksi)
+- Fixed support for snipurl.com (thanks to raneksi)
+- Fixed support for shortify (thanks to raneksi)
+- Fixed support for moourl.com (thanks to raneksi)
+- Removed support for makeashorterlink.com (thanks to raneksi)</pre>
+
+<p>0.8.4:</p>
+
+<pre>- Fixed support for RubyURL.com
+- Added support for urlTea.com
+- Added support for moourl.com</pre>
+
+<p>0.7.0:</p>
+
+<pre>- Added shortify.com, 0rz.net
+- Modified unit tests
+- Started using CVS on RubyForge</pre>
+
+<p>0.6.0:</p>
+
+<pre>- Changed the method for getting the URL for ln-s.net to use their
+  API.  So basically, this means the new additional argument attribute
+  in the Service class is now useless, because no service uses it.  I've
+  removed it along with the Hash#to_html_args method.
+- Added d62.net, shiturl.com, littlink.com and clipurl.com</pre>
+
+<p>0.5.0:</p>
+
+<pre>- Added two services: fyad.org and ln-s.net (thanks to Daniel
+  Dipaolo)
+- Added an property to the Service class: args.  This allows to give
+  additional arguments to services using the GET method (this was
+  needed by ln-s.net)
+- Added a method to Hash to convert to an HTML arguments style
+- Added a script called &quot;shorturl&quot; (duh) in the bin directory for
+  usage from the command line.</pre>
+
+<p>0.4.0:</p>
+
+<pre>- Added minilink.org
+- More tests for the Service class
+- Changed the ArgumentError exception for an InvalidService exception in ShortURL.shorten
+- Created examples/shorten.rb
+- Added a stats task to the Rakefile.  Requires code_statistics, provided by Rails.</pre>
+
+<p>0.3.0:</p>
+
+<pre>- Added linktrim.com and shorterlink.com
+- Replaced get_short_url and all the private class methods in favor of a Service class, which makes things clearer</pre>
+
+<p>0.2.1:</p>
+
+<pre>- Added makeashorterlink.com and skinnylink.com
+- Refactored get_short_url</pre>
+
+<p>0.2.0:</p>
+
+<pre>- Added shorl.com, snipurl.com and metamark.net</pre>
+
+<p>0.1.0:</p>
+
+<pre>- Refactored the tinyurl and rubyurl methods
+- URI.extract to get URLs instead of regular expressions
+- Added exception handling to get_short_url to return nil in case
+  of a network error
+- More thorough unit tests
+- Made tinyurl, rubyurl and get_short_url private class methods</pre>
+
+<p>0.0.1:</p>
+
+<pre>- Initial release</pre>
+
+  </div>
+
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
+</body>
+</html>
+

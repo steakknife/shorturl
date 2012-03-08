@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>File: README [ShortURL Documentation]</title>
+
+  <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet" />
+
+  <script src="./js/jquery.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="./js/thickbox-compressed.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="./js/quicksearch.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="./js/darkfish.js" type="text/javascript"
+    charset="utf-8"></script>
+</head>
+
+<body class="file">
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="./ChangeLog.html">ChangeLog</a></li>
+        
+          <li class="file"><a href="./MIT-LICENSE.html">MIT-LICENSE</a></li>
+        
+          <li class="file"><a href="./README.html">README</a></li>
+        
+          <li class="file"><a href="./TODO.html">TODO</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class Index
+          <span class="search-toggle"><img src="./images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="./ShortURL.html">ShortURL</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="documentation">
+    
+<h1><a href="ShortURL.html">ShortURL</a> 0.8.8</h1>
+
+<h2>Summary </h2>
+
+<p><a href="ShortURL.html">ShortURL</a> is a very simple library to use URL
+shortening services such as is.gd, git.io, and TinyURL.</p>
+
+<h2>Installation</h2>
+
+<p><a href="ShortURL.html">ShortURL</a> is available as a gem, installation is
+just like any other gem: <tt>$ gem install shorturl</tt></p>
+
+<p>You can also download the tar.bz2 archive at <a
+href="http://rubyforge.org/frs/?group_id=732">rubyforge.org/frs/?group_id=732</a>
+if you do not want to use the gem.</p>
+
+<h2>Supported services</h2>
+
+<p>Here is the list of the services supported by ShortURL:</p>
+<ul><li>
+<p><a href="http://tinyurl.com">tinyurl.com</a></p>
+</li><li>
+<p><a href="http://shorl.com">shorl.com</a></p>
+</li><li>
+<p><a href="http://snipurl.com">snipurl.com</a></p>
+</li><li>
+<p><a href="http://metamark.net">metamark.net</a></p>
+</li><li>
+<p><a href="http://git.io">git.io</a></p>
+</li><li>
+<p><a href="http://minilink.org">minilink.org</a></p>
+</li><li>
+<p><a href="http://ln-s.net">ln-s.net</a></p>
+</li><li>
+<p><a href="http://moourl.com">moourl.com</a></p>
+</li><li>
+<p><a href="http://vurl.me">vurl.me</a></p>
+</li><li>
+<p><a href="http://bit.ly">bit.ly</a></p>
+</li><li>
+<p><a href="http://is.gd">is.gd</a></p>
+</li></ul>
+
+<h2>Usage: </h2>
+
+<p>call-seq:</p>
+
+<pre>require &quot;shorturl&quot;
+puts ShortURL.shorten(&quot;http://mypage.com&quot;)
+puts ShortURL.shorten(&quot;http://mypage.com&quot;, :moourl)</pre>
+
+<p>The second parameter represents the service you want to use.  These are:</p>
+<ul><li>
+<p><tt>:tinyurl</tt></p>
+</li><li>
+<p><tt>:shorl</tt></p>
+</li><li>
+<p><tt>:snipurl</tt></p>
+</li><li>
+<p><tt>:metamark</tt></p>
+</li><li>
+<p><tt>:gitio</tt></p>
+</li><li>
+<p><tt>:minlink</tt></p>
+</li><li>
+<p><tt>:lns</tt></p>
+</li><li>
+<p><tt>:moourl</tt></p>
+</li><li>
+<p><tt>:vurl</tt></p>
+</li><li>
+<p><tt>:bitly</tt></p>
+</li><li>
+<p><tt>:isgd</tt></p>
+</li></ul>
+
+<p>You can use <tt>ShortURL.valid_services</tt> to obtain a list of the valid
+services (in case I forget to update the documentation)</p>
+
+<h2>Thanks</h2>
+<ul><li>
+<p>Marcel Molina Jr., Devin Mullins for some ideas</p>
+</li><li>
+<p>imperator from ruby-lang (I don’t know your real name, sorry) for helping
+me with creating and uploading a RubyGem</p>
+</li><li>
+<p>Daniel Dipaolo for telling me about ln-s.net and fyad.org</p>
+</li></ul>
+
+<h2>Authors</h2>
+<ul><li>
+<p>Vincent Foley (original developer)</p>
+</li><li>
+<p>Robby Russell &lt;robbyrussell@gmail.com&gt;</p>
+</li></ul>
+
+  </div>
+
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
+</body>
+</html>
+

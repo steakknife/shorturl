@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>Module: ShortURL</title>
+
+  <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+  <script src="./js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body id="top" class="module">
+
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
+
+    <div id="file-metadata">
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li><a href="./Lib/shorturl_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="Lib/shorturl.rb">Lib/shorturl.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      
+    </div>
+
+    <div id="class-metadata">
+      
+
+      
+
+      
+
+      
+      <!-- Method Quickref -->
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+          <li><a href="#method-c-help_texts">::help_texts</a></li>
+          
+          <li><a href="#method-c-shorten">::shorten</a></li>
+          
+          <li><a href="#method-c-valid_services">::valid_services</a></li>
+          
+        </ul>
+      </div>
+      
+
+      
+      <!-- Included Modules -->
+      <div id="includes-section" class="section">
+        <h3 class="section-header">Included Modules</h3>
+        <ul class="link-list">
+        
+        
+          <li><span class="include">::ShortUrl::DSL</span></li>
+        
+        
+        </ul>
+      </div>
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="./ChangeLog.html">ChangeLog</a></li>
+        
+          <li class="file"><a href="./MIT-LICENSE.html">MIT-LICENSE</a></li>
+        
+          <li class="file"><a href="./README.html">README</a></li>
+        
+          <li class="file"><a href="./TODO.html">TODO</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class/Module Index
+          <span class="search-toggle"><img src="./images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="./ShortURL.html">ShortURL</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="documentation">
+    <h1 class="module">ShortURL</h1>
+
+    <div id="description" class="description">
+      
+    </div><!-- description -->
+
+    
+    
+    
+    <div id="5Buntitled-5D" class="documentation-section">
+      
+
+      
+
+      
+
+      
+
+      <!-- Methods -->
+      
+      <div id="public-class-method-details" class="method-section section">
+        <h3 class="section-header">Public Class Methods</h3>
+
+      
+        <div id="help_texts-method" class="method-detail ">
+          <a name="method-c-help_texts"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">help_texts</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="help_texts-source">
+<pre>
+<span class="ruby-comment"># File Lib/shorturl.rb, line 190</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">help_texts</span>
+  <span class="ruby-keyword">return</span> {}.<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">result</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">@@valid_services</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">result</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-identifier">v</span>.<span class="ruby-identifier">help</span>.<span class="ruby-identifier">to_s</span>
+    <span class="ruby-keyword">end</span> 
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- help_texts-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- help_texts-method -->
+
+      
+        <div id="shorten-method" class="method-detail ">
+          <a name="method-c-shorten"></a>
+
+          
+          
+          <div class="method-heading">
+            <span class="method-callseq">shorten("http://mypage.com") => Uses RubyURL</span>
+            
+            <span class="method-click-advice">click to toggle source</span>
+            
+          </div>
+          
+          <div class="method-heading">
+            <span class="method-callseq">shorten("http://mypage.com", :tinyurl)</span>
+            
+          </div>
+          
+          
+
+          <div class="method-description">
+            
+            <p>Main method of <a href="ShortURL.html">ShortURL</a>, its usage is quite
+simple, just give an url to shorten and an optional service.  If no service
+is selected, RubyURL.com will be used.  An invalid service symbol will
+raise an ShortUrl::InvalidService exception.  Missing API
+tokens/credentials will  raise an  ShortUrl::TokenLoadError exception.</p>
+
+<p>Valid <tt>service</tt> values:</p>
+<ul><li>
+<p><tt>:tinyurl</tt></p>
+</li><li>
+<p><tt>:shorl</tt></p>
+</li><li>
+<p><tt>:snipurl</tt></p>
+</li><li>
+<p><tt>:metamark</tt></p>
+</li><li>
+<p><tt>:gitio</tt></p>
+</li><li>
+<p><tt>:minlink</tt></p>
+</li><li>
+<p><tt>:lns</tt></p>
+</li><li>
+<p><tt>:clipurl</tt></p>
+</li><li>
+<p><tt>:orz</tt></p>
+</li><li>
+<p><tt>:isgd</tt></p>
+</li><li>
+<p><tt>:googl</tt></p>
+</li></ul>
+            
+
+            
+            <div class="method-source-code" id="shorten-source">
+<pre>
+<span class="ruby-comment"># File Lib/shorturl.rb, line 222</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">shorten</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">service</span> = <span class="ruby-value">:isgd</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-operator">::</span><span class="ruby-constant">ShortUrl</span><span class="ruby-operator">::</span><span class="ruby-constant">InvalidService</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">valid_services</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">service</span>
+
+  <span class="ruby-identifier">@@services</span>[<span class="ruby-identifier">service</span>].<span class="ruby-identifier">call</span>(<span class="ruby-identifier">url</span>).<span class="ruby-identifier">strip</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- shorten-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- shorten-method -->
+
+      
+        <div id="valid_services-method" class="method-detail ">
+          <a name="method-c-valid_services"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">valid_services</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Returns @@<a
+href="ShortURL.html#method-c-valid_services">valid_services</a></p>
+            
+
+            
+            <div class="method-source-code" id="valid_services-source">
+<pre>
+<span class="ruby-comment"># File Lib/shorturl.rb, line 185</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">valid_services</span>
+  <span class="ruby-identifier">@@valid_services</span> = <span class="ruby-identifier">@@services</span>.<span class="ruby-identifier">keys</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">@@valid_services</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">@@valid_services</span> 
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- valid_services-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- valid_services-method -->
+
+      
+      </div><!-- public-class-method-details -->
+    
+    </div><!-- 5Buntitled-5D -->
+  
+
+  </div><!-- documentation -->
+
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
+
+</body>
+</html>
+
