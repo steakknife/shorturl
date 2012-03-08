@@ -91,14 +91,6 @@ module ShortURL
       end
     end
 
-    service :shortify => 'shortify.wikinote.com' do
-      method :get
-      action '/shorten.php'
-
-      response_body  do |body|
-        URI.extract(body).grep(/shortify/)[-1] 
-      end
-    end
       
     service :moourl => 'moourl.com' do
       action '/create/'
@@ -295,7 +287,6 @@ module ShortURL
   # * <tt>:shiturl</tt>
   # * <tt>:littlink</tt>
   # * <tt>:clipurl</tt>
-  # * <tt>:shortify</tt>
   # * <tt>:orz</tt>
   # * <tt>:isgd</tt>
   # * <tt>:googl</tt>
