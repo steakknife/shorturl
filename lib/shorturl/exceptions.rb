@@ -19,30 +19,30 @@ module ShortUrl
         @@exception_dumpster = []
       public
 
-      def throw(exception)
+      def self.throw(exception)
         unless exception.is_a? ShortUrlExceptions
           puts "Warning: What kind of garbage is this? #{exception.class}" 
         end
         @@exception_dumpster << exception
       end
 
-      def pop
+      def self.pop
         @@exception_dumpster.pop
       end
 
-      def top
+      def self.top
         @@exception_dumpster.last
       end
 
-      def junk?
+      def self.got_junk?
         ! @@exception_dumpster.empty?
       end
 
-      def empty?
+      def self.empty?
         @@exception_dumpster.empty?
       end
 
-      def each
+      def self.each
         @@exception_dumpster.each
       end
 

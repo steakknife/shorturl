@@ -4,14 +4,15 @@
 #   Heavily refactored by Barry Allard
 
 require 'shorturl/version'
-require 'shorturl/dsl'
+require 'shorturl/exceptions'
 require 'shorturl/tokens'
+require 'shorturl/dsl'
 
 module ShortURL
-   extend ::ShortUrl::Tokens
-  include ::ShortUrl::Tokens
-   extend ::ShortUrl::DSL
-  include ::ShortUrl::DSL
+   extend ShortUrl::Exceptions
+   extend ShortUrl::Tokens
+   extend ShortUrl::DSL
+  include ShortUrl::DSL
 
   ## 
 

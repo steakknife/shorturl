@@ -3,11 +3,11 @@
 #   Barry Allard 
 #
 
+require 'shorturl/exceptions'
 require 'shorturl/service'
 
 module ShortUrl
   module DSL
-
 
     # Outer shorturls block
     def shorturl
@@ -89,7 +89,7 @@ module ShortUrl
         end
 
         def show_missing_token_help
-          if @@current_service.missing_token_help and Exceptions::Dumpsters.junk?
+          if @@current_service.missing_token_help and Exceptions::Dumpster.got_junk?
             Exceptions::Dumpster.each do |e|
               puts "#{e.class} #{e.message}"
             end
