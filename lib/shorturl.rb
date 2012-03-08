@@ -9,7 +9,7 @@ require 'shorturl/tokens'
 module ShortURL
    extend ::ShortUrl::DSL
   include ::ShortUrl::DSL
-  extend ::ShortUrl::Tokens
+   extend ::ShortUrl::Tokens
 
   ## 
 
