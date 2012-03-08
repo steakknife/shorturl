@@ -1,8 +1,8 @@
-= ShortURL 0.8.4
+= ShortURL 0.8.8
 
 == Summary 
 ShortURL is a very simple library to use URL shortening services such as
-RubyURL, urlTea, and TinyURL.
+is.gd, git.io, and TinyURL.
 
 == Installation
 ShortURL is available as a gem, installation is just like any other gem:
@@ -17,20 +17,10 @@ Here is the list of the services supported by ShortURL:
 * http://shorl.com
 * http://snipurl.com
 * http://metamark.net
-* http://makeashorterlink.com
-* http://skinnylink.com
 * http://git.io
-* http://linktrim.com
-* http://shorterlink.com
 * http://minilink.org
 * http://ln-s.net
-* http://fyad.org
-* http://d62.net
-* http://littlink.com
-* http://clipurl.com
-* http://0rz.net
 * http://moourl.com
-* http://urltea.com
 * http://vurl.me
 * http://bit.ly
 * http://is.gd
@@ -46,54 +36,17 @@ The second parameter represents the service you want to use.  These are:
 * <tt>:shorl</tt>
 * <tt>:snipurl</tt>
 * <tt>:metamark</tt>
-* <tt>:makeashorterlink</tt>
-* <tt>:skinnylink</tt>
 * <tt>:gitio</tt>
-* <tt>:linktrim</tt>
-* <tt>:shorterlink</tt>
 * <tt>:minlink</tt>
 * <tt>:lns</tt>
-* <tt>:fyad</tt>
-* <tt>:d62</tt>
-* <tt>:littlink</tt>
-* <tt>:clipurl</tt>
-* <tt>:orz</tt>
 * <tt>:moourl</tt>
-* <tt>:urltea</tt>
 * <tt>:vurl</tt>
-* <tt>:bitly</tt>**
+* <tt>:bitly</tt>
 * <tt>:isgd</tt>
-
 
 You can use <tt>ShortURL.valid_services</tt> to obtain a
 list of the valid services (in case I forget to update the
 documentation)
-
-Bitly**
--------
-
-   Their API changed to require an API key.  
-
-   Two painfree steps to fix this.
-
-   1) Get yours easily right now from: 
-
-   http://bitly.com/a/your_api_key
-
-
-   2) Save it in ~/.shorturl similar to this YAML template:
- 
---- Start of file ~/.shorturl ---
-   
-   ---
-   bitly:
-     username: O_adsfasdfasfasfd
-     key: R_afasdfasdfasdf
-
---- END of file ~/.shorturl ---
-
-
-   You're done!  Have a martini.  Cheers.
 
 == Thanks
 - Marcel Molina Jr., Devin Mullins for some ideas
