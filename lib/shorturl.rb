@@ -3,6 +3,7 @@
 #   Created by Vincent Foley on 2005-06-02
 #   Heavily refactored by Barry Allard
 
+require 'shorturl/version'
 require 'shorturl/dsl'
 require 'shorturl/tokens'
 
