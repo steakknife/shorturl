@@ -2,3 +2,6 @@
 
 * Add more services
 * Get input from people about what I should do
+* Modernize Rakefile
+* Modernize gemspec
+* Support yard docs
